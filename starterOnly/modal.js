@@ -27,4 +27,38 @@ modalcrossclose.forEach((btn) => btn.addEventListener("click", closeModal));
 // close modal event
 function closeModal() {
   modalbg.style.display = "none";
-}
+};
+
+// remplir le formulaire et validation submit click
+let form = document.querySelector("form")
+form.addEventListener("submit", (event) => {
+  event.preventDefault()
+
+  let baliseFirst = document.querySelector("#first")
+  let first = baliseFirst.value
+
+  let baliseLast = document.querySelector("#last")
+  let last = baliseLast.value
+
+  let baliseEmail = document.querySelector("#email")
+  let email = baliseEmail.value
+
+  let baliseBirthdate= document.querySelector("#birthdate")
+  let birthdate = baliseBirthdate.value
+
+  let baliseQuantity= document.querySelector("#quantity")
+  let quantity = baliseQuantity.value
+
+
+  console.log(first, last, email, birthdate, quantity)
+
+  // Vérification des champs
+  if (first.length < 2 || last.length < 2 || !isValidEmail(email) || parseInt(quantity) < 0 || parseInt(quantity) > 99) {
+    return;
+  }
+  form.submit();
+ 
+
+})
+
+
