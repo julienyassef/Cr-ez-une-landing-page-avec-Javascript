@@ -49,7 +49,7 @@ form.addEventListener("submit", (event) => {
   let baliseQuantity= document.querySelector("#quantity")
   let quantity = baliseQuantity.value
 
-
+  
   let baliseLocation = document.querySelectorAll("input[name=location]")
   let location = ""
   for (let i = 0; i < baliseLocation.length; i++) {
@@ -57,10 +57,17 @@ form.addEventListener("submit", (event) => {
       location = baliseLocation[i].value
       break
     }
+    
+  let baliseAccept = document.getElementById("checkbox1")
+  let accept = baliseAccept.checked
+    
+  let baliseInform = document.getElementById("checkbox2")
+  let inform = baliseInform.checked
+
   }
 
 
-  console.log(first, last, email, birthdate, quantity, location)
+  console.log(first, last, email, birthdate, quantity, location, accept, inform)
 
   // Vérification des champs
   if (first.length < 2 || last.length < 2 || !isValidEmail(email) || parseInt(quantity) < 0 || parseInt(quantity) > 99 || location === "" ) {
