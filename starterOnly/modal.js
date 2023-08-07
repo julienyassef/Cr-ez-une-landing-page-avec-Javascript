@@ -1,5 +1,5 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
+const editNav = () => {
+  const x = document.querySelector("#myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
   } else {
@@ -7,75 +7,100 @@ function editNav() {
   }
 }
 
-// DOM Elements
+
+// =====================
+//     DOM Elements
+// =====================
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const modalcrossclose = document.querySelectorAll(".close");
+const modalcrossclose = document.querySelector(".close");
+
+const form = document.querySelector("form");
+const inputFirst = document.querySelector("#first");
+const inputLast = document.querySelector("#last");
+const inputEmail = document.querySelector("#email");
+const inputBirthdate= document.querySelector("#birthdate");
+const inputQuantity= document.querySelector("#quantity");
+
+
+
+// =====================
+//     FUNCTIONS
+//   (définitions)
+// =====================
+// launch modal form
+const launchModal = () => {
+  modalbg.classList.add('display')
+};
+// close modal event
+const closeModal = () => {
+  modalbg.classList.remove('display')
+};
+
+const isValidFirstName = (input) => {
+  const value = input.value;
+
+  if (value.length >= 2) {
+    return true
+  } else {
+    return false
+  }
+}
+
+const isValidLastName = () => {
+
+}
+
+const isValidEmail = () => {
+  // regex que tu as fait toi même ;)
+
+}
+
+
+// =====================
+//      LOGIQUE 
+// =====================
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-};
-
 // close modal event
-modalcrossclose.forEach((btn) => btn.addEventListener("click", closeModal));
+modalcrossclose.addEventListener("click", closeModal);
 
-// close modal event
-function closeModal() {
-  modalbg.style.display = "none";
-};
+// validation de l'input firstName
+inputFirst.addEventListener('input', (event) => {
+  const isValid = isValidFirstName(inputFirst)
+  
+  // si c'est pas valid alors....
+  if (isValid === true) {
+    console.log("super faut supprimer le message d'erreur si y'en a")
+  } else {
+    console.log("pas bien faut afficher le message d'erreur")
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 // remplir le formulaire et validation submit click
-let form = document.querySelector("form")
 form.addEventListener("submit", (event) => {
-  event.preventDefault()
+  event.preventDefault();
 
-  let baliseFirst = document.querySelector("#first")
-  let first = baliseFirst.value
-
-  let baliseLast = document.querySelector("#last")
-  let last = baliseLast.value
-
-  let baliseEmail = document.querySelector("#email")
-  let email = baliseEmail.value
-
-  let baliseBirthdate= document.querySelector("#birthdate")
-  let birthdate = baliseBirthdate.value
-
-  let baliseQuantity= document.querySelector("#quantity")
-  let quantity = baliseQuantity.value
-
-  
-  let baliseLocation = document.querySelectorAll("input[name=location]")
-  let location = ""
-  for (let i = 0; i < baliseLocation.length; i++) {
-    if (baliseLocation[i].checked) {
-      location = baliseLocation[i].value
-      break
-    }
-    
-  let baliseAccept = document.getElementById("checkbox1")
-  let accept = baliseAccept.checked
-    
-  let baliseInform = document.getElementById("checkbox2")
-  let inform = baliseInform.checked
-
-  }
-
-
-  console.log(first, last, email, birthdate, quantity, location, accept, inform)
-
-  // Vérification des champs
-  if (first.length < 2 || last.length < 2 || !isValidEmail(email) || parseInt(quantity) < 0 || parseInt(quantity) > 99 || location === "" ) {
-    return;
-  }
-  form.submit();
- 
-
+  const first = baliseFirst.value
+  const last = baliseLast.value
+  const email = baliseEmail.value
+  const birthdate = baliseBirthdate.value
+  const quantity = baliseQuantity.value
+  console.log(first, last, email, birthdate, quantity)
 })
 
 
