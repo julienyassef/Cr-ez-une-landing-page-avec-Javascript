@@ -50,10 +50,20 @@ form.addEventListener("submit", (event) => {
   let quantity = baliseQuantity.value
 
 
-  console.log(first, last, email, birthdate, quantity)
+  let baliseLocation = document.querySelectorAll("input[name=location]")
+  let location = ""
+  for (let i = 0; i < baliseLocation.length; i++) {
+    if (baliseLocation[i].checked) {
+      location = baliseLocation[i].value
+      break
+    }
+  }
+
+
+  console.log(first, last, email, birthdate, quantity, location)
 
   // Vérification des champs
-  if (first.length < 2 || last.length < 2 || !isValidEmail(email) || parseInt(quantity) < 0 || parseInt(quantity) > 99) {
+  if (first.length < 2 || last.length < 2 || !isValidEmail(email) || parseInt(quantity) < 0 || parseInt(quantity) > 99 || location === "" ) {
     return;
   }
   form.submit();
