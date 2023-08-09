@@ -22,6 +22,7 @@ const inputLast = document.querySelector("#last");
 const inputEmail = document.querySelector("#email");
 const inputBirthdate= document.querySelector("#birthdate");
 const inputQuantity= document.querySelector("#quantity");
+const inputRadio = document.querySelectorAll(".checkbox-input");
 
 
     // message  d'erreur
@@ -30,7 +31,7 @@ const errorMessageLast = document.querySelector("#error-message-last");
 const errorMessageEmail = document.querySelector("#error-message-email");
 const errorMessageBirthdate = document.querySelector("#error-message-birthdate");
 const errorMessageQuantity = document.querySelector("#error-message-quantity");
-
+const errorMessageRatio = document.querySelector("#error-message-ratio");
 
 
 // =====================
@@ -80,6 +81,8 @@ const isValidQuantity = (quantity) => {
   const parsedQuantity = parseInt(quantity);
   return !isNaN(parsedQuantity) && parsedQuantity >= 0 && parsedQuantity <= 99;
 };
+
+
 
 
 
@@ -140,8 +143,19 @@ inputQuantity.addEventListener('input', (event) => {
   }
 });
 
-
-
+// validation Ratio
+inputRadio.forEach(input => {
+  input.addEventListener("change", event => {
+    const selectedValue = event.target.value;
+    console.log("Selected city:", selectedValue);
+    
+    if (selectedValue === "") {
+      errorMessageRatio.textContent = " Vous devez choisir un tournoi ";
+    } else {
+      errorMessageRatio.textContent = " ";
+    }
+  });
+});
 
 
 // remplir le formulaire et validation submit click
@@ -153,6 +167,7 @@ form.addEventListener("submit", (event) => {
   const email = inputEmail.value
   const birthdate = inputBirthdate.value
   const quantity = inputQuantity.value
+
   console.log(first, last, email, birthdate, quantity)
 })
 
