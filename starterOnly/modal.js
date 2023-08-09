@@ -27,6 +27,9 @@ const inputQuantity= document.querySelector("#quantity");
     // message  d'erreur
 const errorMessageFirst = document.querySelector("#error-message-first");
 const errorMessageLast = document.querySelector("#error-message-last");
+const errorMessageEmail = document.querySelector("#error-message-email");
+const errorMessageBirthdate = document.querySelector("#error-message-birthdate");
+const errorMessageQuantity = document.querySelector("#error-message-quantity");
 
 
 
@@ -43,6 +46,7 @@ const closeModal = () => {
   modalbg.classList.remove('display')
 };
 
+// function isValidFirstName
 const isValidFirstName = (input) => {
   const value = input.value;
 
@@ -53,6 +57,7 @@ const isValidFirstName = (input) => {
   }
 };
 
+// function isValidlastName
 const isValidLasttName = (input) => {
   const value = input.value;
 
@@ -64,11 +69,20 @@ const isValidLasttName = (input) => {
   }
 };
 
+// function isValidEmail
+const isValidEmail = (email) => {
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailRegex.test(email);
+};
 
-// const isValidEmail = () => {
-//   // regex que tu as fait toi même ;)
+// function isValidQuantity
+const isValidQuantity = (quantity) => {
+  const parsedQuantity = parseInt(quantity);
+  return !isNaN(parsedQuantity) && parsedQuantity >= 0 && parsedQuantity <= 99;
+};
 
-// };
+
+
 
 
 // =====================
@@ -101,6 +115,28 @@ inputLast.addEventListener('input', (event) => {
     errorMessageLast.textContent = " ";
   } else {
     errorMessageLast.textContent = "Veuillez entrer 2 caratères ou plus pour le champ du nom";
+  }
+});
+
+// validation de l'input Email
+inputEmail.addEventListener('input', (event) => {
+  const isValid = isValidEmail(inputEmail.value);
+  
+  if (isValid === true) {
+    errorMessageEmail.textContent = " ";
+  } else {
+    errorMessageEmail.textContent = "Veuillez entrer une adresse e-mail valide.";
+  }
+});
+
+// validation de l'input Quantity
+inputQuantity.addEventListener('input', (event) => {
+  const isValid = isValidQuantity(inputQuantity.value);
+  
+  if (isValid === true) {
+    errorMessageQuantity.textContent = " ";
+  } else {
+    errorMessageQuantity.textContent = "Veuillez entrer une valeur valide entre 0 et 99.";
   }
 });
 
