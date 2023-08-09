@@ -26,6 +26,7 @@ const inputQuantity= document.querySelector("#quantity");
 
     // message  d'erreur
 const errorMessageFirst = document.querySelector("#error-message-first");
+const errorMessageLast = document.querySelector("#error-message-last");
 
 
 
@@ -89,6 +90,17 @@ inputFirst.addEventListener('input', (event) => {
     errorMessageFirst.textContent = " ";
   } else {
     errorMessageFirst.textContent = "Veuillez entrer 2 caratères ou plus pour le champ du prénom";
+  }
+});
+
+// validation de l'input lastName
+inputLast.addEventListener('input', (event) => {
+  const isValid = isValidLasttName(inputLast);
+  
+  if (isValid === true) {
+    errorMessageLast.textContent = " ";
+  } else {
+    errorMessageLast.textContent = "Veuillez entrer 2 caratères ou plus pour le champ du nom";
   }
 });
 
