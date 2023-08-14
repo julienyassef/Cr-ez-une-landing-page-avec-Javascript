@@ -25,7 +25,8 @@ const inputQuantity= document.querySelector("#quantity");
 const inputRadio = document.querySelectorAll(".checkbox-input");
 
 
-    // message  d'erreur
+// message  d'erreur
+// A DELETE
 const errorMessageFirst = document.querySelector("#error-message-first");
 const errorMessageLast = document.querySelector("#error-message-last");
 const errorMessageEmail = document.querySelector("#error-message-email");
@@ -33,6 +34,21 @@ const errorMessageBirthdate = document.querySelector("#error-message-birthdate")
 const errorMessageQuantity = document.querySelector("#error-message-quantity");
 const errorMessageRatio = document.querySelector("#error-message-ratio");
 
+
+
+// =====================
+//        GLOBALE
+// =====================
+const RESULTS = {
+  first: '',
+  last:'',
+  email: '',
+  birthdate: '',
+  quantity: '',
+  // city: '',
+  // cgu: false,
+  // newsletter: false
+}
 
 // =====================
 //     FUNCTIONS
@@ -104,8 +120,10 @@ inputFirst.addEventListener('input', (event) => {
   const isValid = isValidFirstName(inputFirst);
   
   if (isValid === true) {
+    RESULTS.firstname = inputFirst.value
     errorMessageFirst.textContent = " ";
   } else {
+    RESULTS.firstname = ''
     errorMessageFirst.textContent = "Veuillez entrer 2 caratères ou plus pour le champ du prénom";
   }
 });
@@ -115,6 +133,7 @@ inputLast.addEventListener('input', (event) => {
   const isValid = isValidLasttName(inputLast);
   
   if (isValid === true) {
+    RESULTS.firstname = inputLast.value
     errorMessageLast.textContent = " ";
   } else {
     errorMessageLast.textContent = "Veuillez entrer 2 caratères ou plus pour le champ du nom";
@@ -135,6 +154,7 @@ inputEmail.addEventListener('input', (event) => {
 // validation de l'input Quantity
 inputQuantity.addEventListener('input', (event) => {
   const isValid = isValidQuantity(inputQuantity.value);
+  console.log('isValid', isValid)
   
   if (isValid === true) {
     errorMessageQuantity.textContent = " ";
@@ -144,31 +164,36 @@ inputQuantity.addEventListener('input', (event) => {
 });
 
 // validation Ratio
-inputRadio.forEach(input => {
-  input.addEventListener("change", event => {
-    const selectedValue = event.target.value;
-    console.log("Selected city:", selectedValue);
+// inputRadio.forEach(input => {
+//   input.addEventListener("change", event => {
+//     const selectedValue = event.target.value;
+//     console.log("Selected city:", selectedValue);
     
-    if (selectedValue === "") {
-      errorMessageRatio.textContent = " Vous devez choisir un tournoi ";
-    } else {
-      errorMessageRatio.textContent = " ";
-    }
-  });
-});
+//     if (selectedValue === "") {
+//       errorMessageRatio.textContent = " Vous devez choisir un tournoi ";
+//     } else {
+//       errorMessageRatio.textContent = " ";
+//     }
+//   });
+// });
 
 
 // remplir le formulaire et validation submit click
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const first = inputFirst.value
-  const last = inputLast.value
-  const email = inputEmail.value
-  const birthdate = inputBirthdate.value
-  const quantity = inputQuantity.value
+  // vérifier la variable RESULTS
+  for (let key in RESULTS) {
+    const value = RESULTS[key]
 
-  console.log(first, last, email, birthdate, quantity)
+    // pas valable pour les boolean
+    if(value.length === 0) {
+      // error
+      console.log("key", key)
+
+    }
+
+  }
 })
 
 
