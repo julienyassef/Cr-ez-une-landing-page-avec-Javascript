@@ -25,6 +25,8 @@ const inputEmail = document.querySelector("#email");
 const inputBirthdate= document.querySelector("#birthdate");
 const inputQuantity= document.querySelector("#quantity");
 const inputRadio = document.querySelectorAll('input[type="radio"]');
+const inputCGU = document.querySelector("#checkbox1");
+const inputNewsLetter = document.querySelector("#checkbox2");
 
 
 // =====================
@@ -37,8 +39,8 @@ const RESULTS = {
   birthdate: '',
   quantity: '',
   city: '',
-  // cgu: false,
-  // newsletter: false
+  cgu: '',
+  newsletter: ''
 }
 
 // objet radio city
@@ -55,6 +57,7 @@ const cityLocation = {
 //     FUNCTIONS
 //   (définitions)
 // =====================
+
 // launch modal form
 const launchModal = () => {
   modalbg.classList.add('display')
@@ -63,6 +66,7 @@ const launchModal = () => {
 const closeModal = () => {
   modalbg.classList.remove('display')
 };
+
 
 // function isValidFirstName
 const isValidFirstName = (input) => {
@@ -110,6 +114,19 @@ const isValidQuantity = (quantity) => {
 //   const radioGroup = document.querySelectorAll(`input[name="${radioGroupName}"]:checked`);
 //   return radioGroup.length > 0;
 // };
+
+// // function isCheckedCGU
+const isChecked = (input) => {
+  const checked = input.checked;
+
+  if (checked) {
+    return true
+  } 
+  else {
+    return false
+  }
+};
+
 
 
 
@@ -197,6 +214,32 @@ inputRadio.forEach(input => {
   });
 });
 
+// validation de l'input CGU
+inputCGU.addEventListener('input', (event) => {
+  const isCGUChecked = isChecked(inputCGU);
+  
+  if (isCGUChecked === true) {
+    RESULTS.CGU = true;
+  } else {
+    RESULTS.CGU = false;
+  }
+});
+
+// validation de l'input NewsLetter
+inputNewsLetter.addEventListener('input', (event) => {
+  const isNewsLetterChecked = isChecked(inputNewsLetter);
+  
+  if (isNewsLetterChecked === true) {
+    RESULTS.newsletter = true;
+  } else {
+    RESULTS.newsletter = false;
+  }
+});
+
+
+// =================================
+//      VALIDATION FORMULAIRE
+// =================================
 
 // remplir le formulaire et validation submit click
 form.addEventListener("submit", (event) => {
