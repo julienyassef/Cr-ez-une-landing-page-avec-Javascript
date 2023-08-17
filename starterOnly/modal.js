@@ -36,9 +36,19 @@ const RESULTS = {
   email: '',
   birthdate: '',
   quantity: '',
-  // city: '',
+  city: '',
   // cgu: false,
   // newsletter: false
+}
+
+// objet radio city
+const cityLocation = {
+  "New York": "New York",
+  "San Francisco": "San Francisco",
+  "Seattle": "Seattle",
+  "Chicago": "Chicago",
+  "Boston": "Boston",
+  "Portland": "Portland"
 }
 
 // =====================
@@ -94,6 +104,12 @@ const isValidQuantity = (quantity) => {
   const parsedQuantity = parseInt(quantity);
   return !isNaN(parsedQuantity) && parsedQuantity >= 0 && parsedQuantity <= 99;
 };
+
+// // function isCheckedRadio
+// const isCheckedRadio = (radioGroupName) => {
+//   const radioGroup = document.querySelectorAll(`input[name="${radioGroupName}"]:checked`);
+//   return radioGroup.length > 0;
+// };
 
 
 
@@ -166,37 +182,46 @@ inputQuantity.addEventListener('input', (event) => {
   }
 });
 
+
 // validation Ratio
-// inputRadio.forEach(input => {
-//   input.addEventListener("change", event => {
-//     const selectedValue = event.target.value;
-//     console.log("Selected city:", selectedValue);
+inputRadio.forEach(input => {
+  input.addEventListener("change", event => {
+    const selectedValue = event.target.value;
     
-//     if (selectedValue === "") {
-//       errorMessageRatio.textContent = " Vous devez choisir un tournoi ";
-//     } else {
-//       errorMessageRatio.textContent = " ";
-//     }
-//   });
-// });
+    if (cityLocation[selectedValue])  {
+      RESULTS.city = cityLocation[selectedValue]
+    } 
+    else {
+      RESULTS.city = "error"
+    }
+  });
+});
 
 
 // remplir le formulaire et validation submit click
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
+  // let isValidRadio = isCheckedRadio("location");
+  
   // vérifier la variable RESULTS
   for (let key in RESULTS) {
     const value = RESULTS[key]
+    console.log(`${key}: ${value}`);
 
     // pas valable pour les boolean
     if(value.length === 0) {
       // error
-      console.log("key", key)
-
+      
     }
 
   }
+
+  // if (isValidRadio) {
+  //   console.log("cocher radio est valide.");
+  // } else {
+  //   console.log("cocher radio est invalide.");
+  // }
 })
 
 
