@@ -39,8 +39,8 @@ const RESULTS = {
   birthdate: '',
   quantity: '',
   city: '',
-  cgu: '',
-  newsletter: ''
+  cgu: false,
+  newsletter: false
 }
 
 // objet radio city
@@ -115,21 +115,11 @@ const isValidQuantity = (quantity) => {
 //   return radioGroup.length > 0;
 // };
 
-// // function isCheckedCGU
+// // function isChecked
 const isChecked = (input) => {
-  const checked = input.checked;
+  return input.checked;
 
-  if (checked) {
-    return true
-  } 
-  else {
-    return false
-  }
 };
-
-
-
-
 
 
 // =====================
@@ -218,33 +208,48 @@ inputRadio.forEach(input => {
 
 
 
+
 // Vérifier l'état initial de la case CGU 
 RESULTS.cgu = inputCGU.checked ? "coché" : "non coché";
 
 // validation de l'input CGU
-inputCGU.addEventListener('input', (event) => {
-  const isCGUChecked = isChecked(inputCGU);
-  
-  if (isCGUChecked === true) {
-    RESULTS.cgu = "coché";
-  } else {
-    RESULTS.cgu = "non coché";
-  }
+inputCGU.addEventListener('change', (event) => {
+  RESULTS.cgu = event.target.checked ? "coché" : "non coché";
 });
+
+
+
+// validation de l'input CGU
+// inputCGU.addEventListener('input', (event) => {
+//   const isCGUChecked = isChecked(inputCGU);
+  
+//   if (isCGUChecked === true) {
+//     RESULTS.cgu = "coché";
+//   } else {
+//     RESULTS.cgu = "non coché";
+//   }
+// });
+
+
 
 // Vérifier l'état initial de la case newsletter
 RESULTS.newsletter = inputNewsLetter.checked ? "coché" : "non coché";
 
-// validation de l'input NewsLetter
-inputNewsLetter.addEventListener('input', (event) => {
-  const isNewsLetterChecked = isChecked(inputNewsLetter);
-  
-  if (isNewsLetterChecked === true) {
-    RESULTS.newsletter = "coché";
-  } else {
-    RESULTS.newsletter = "non coché";
-  }
+// validation de l'input inputNewsLetter
+inputNewsLetter.addEventListener('change', (event) => {
+  RESULTS.newsletter = event.target.checked ? "coché" : "non coché";
 });
+
+// validation de l'input NewsLetter
+// inputNewsLetter.addEventListener('input', (event) => {
+//   const isNewsLetterChecked = isChecked(inputNewsLetter);
+  
+//   if (isNewsLetterChecked === true) {
+//     RESULTS.newsletter = "coché";
+//   } else {
+//     RESULTS.newsletter = "non coché";
+//   }
+// });
 
 
 // =================================
