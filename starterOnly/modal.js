@@ -99,7 +99,7 @@ const isValidEmail = (email) => {
 
 // function isValidBirthdate
 const isValidBirthdate = (birthdate) => {
-  const birthdateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/;
+  const birthdateRegex = /^(19|20)\d{2}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])$/;
   return birthdateRegex.test(birthdate);
 };
 
@@ -166,7 +166,9 @@ inputLast.addEventListener('input', (event) => {
 });
 
 // validation de l'input Birthdate
-inputBirthdate.addEventListener('input', (event) => {
+inputBirthdate.addEventListener('change', (event) => {
+  console.log('Change event triggered');
+  console.log('Input value:', event.target.value);
   const isValid = isValidBirthdate(inputBirthdate.value);
   
   if (isValid === true) {
@@ -214,25 +216,33 @@ inputRadio.forEach(input => {
   });
 });
 
+
+
+// Vérifier l'état initial de la case CGU 
+RESULTS.cgu = inputCGU.checked ? "coché" : "non coché";
+
 // validation de l'input CGU
 inputCGU.addEventListener('input', (event) => {
   const isCGUChecked = isChecked(inputCGU);
   
   if (isCGUChecked === true) {
-    RESULTS.CGU = true;
+    RESULTS.cgu = "coché";
   } else {
-    RESULTS.CGU = false;
+    RESULTS.cgu = "non coché";
   }
 });
+
+// Vérifier l'état initial de la case newsletter
+RESULTS.newsletter = inputNewsLetter.checked ? "coché" : "non coché";
 
 // validation de l'input NewsLetter
 inputNewsLetter.addEventListener('input', (event) => {
   const isNewsLetterChecked = isChecked(inputNewsLetter);
   
   if (isNewsLetterChecked === true) {
-    RESULTS.newsletter = true;
+    RESULTS.newsletter = "coché";
   } else {
-    RESULTS.newsletter = false;
+    RESULTS.newsletter = "non coché";
   }
 });
 
