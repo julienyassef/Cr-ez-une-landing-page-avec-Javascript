@@ -17,23 +17,14 @@ const formData = document.querySelectorAll(".formData");
 const modalcrossclose = document.querySelector(".close");
 
 const form = document.querySelector("form");
+
+
 const inputFirst = document.querySelector("#first");
 const inputLast = document.querySelector("#last");
 const inputEmail = document.querySelector("#email");
 const inputBirthdate= document.querySelector("#birthdate");
 const inputQuantity= document.querySelector("#quantity");
 const inputRadio = document.querySelectorAll(".checkbox-input");
-
-
-// message  d'erreur
-// A DELETE
-const errorMessageFirst = document.querySelector("#error-message-first");
-const errorMessageLast = document.querySelector("#error-message-last");
-const errorMessageEmail = document.querySelector("#error-message-email");
-const errorMessageBirthdate = document.querySelector("#error-message-birthdate");
-const errorMessageQuantity = document.querySelector("#error-message-quantity");
-const errorMessageRatio = document.querySelector("#error-message-ratio");
-
 
 
 // =====================
@@ -92,13 +83,17 @@ const isValidEmail = (email) => {
   return emailRegex.test(email);
 };
 
+// function isValidBirthdate
+const isValidBirthdate = (birthdate) => {
+  const birthdateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/;
+  return birthdateRegex.test(birthdate);
+};
+
 // function isValidQuantity
 const isValidQuantity = (quantity) => {
   const parsedQuantity = parseInt(quantity);
   return !isNaN(parsedQuantity) && parsedQuantity >= 0 && parsedQuantity <= 99;
 };
-
-
 
 
 
@@ -120,11 +115,9 @@ inputFirst.addEventListener('input', (event) => {
   const isValid = isValidFirstName(inputFirst);
   
   if (isValid === true) {
-    RESULTS.firstname = inputFirst.value
-    errorMessageFirst.textContent = " ";
+    RESULTS.first = inputFirst.value
   } else {
-    RESULTS.firstname = ''
-    errorMessageFirst.textContent = "Veuillez entrer 2 caratères ou plus pour le champ du prénom";
+    RESULTS.first = ''
   }
 });
 
@@ -133,10 +126,20 @@ inputLast.addEventListener('input', (event) => {
   const isValid = isValidLasttName(inputLast);
   
   if (isValid === true) {
-    RESULTS.firstname = inputLast.value
-    errorMessageLast.textContent = " ";
+    RESULTS.last = inputLast.value
   } else {
-    errorMessageLast.textContent = "Veuillez entrer 2 caratères ou plus pour le champ du nom";
+    RESULTS.last = ''
+  }
+});
+
+// validation de l'input Birthdate
+inputBirthdate.addEventListener('input', (event) => {
+  const isValid = isValidBirthdate(inputBirthdate.value);
+  
+  if (isValid === true) {
+    RESULTS.birthdate = inputBirthdate.value
+  } else {
+    RESULTS.birthdate = ''
   }
 });
 
@@ -145,9 +148,9 @@ inputEmail.addEventListener('input', (event) => {
   const isValid = isValidEmail(inputEmail.value);
   
   if (isValid === true) {
-    errorMessageEmail.textContent = " ";
+    RESULTS.email = inputEmail.value
   } else {
-    errorMessageEmail.textContent = "Veuillez entrer une adresse e-mail valide.";
+    RESULTS.email = ''
   }
 });
 
@@ -157,9 +160,9 @@ inputQuantity.addEventListener('input', (event) => {
   console.log('isValid', isValid)
   
   if (isValid === true) {
-    errorMessageQuantity.textContent = " ";
+    RESULTS.quantity = inputQuantity.value
   } else {
-    errorMessageQuantity.textContent = "Veuillez entrer une valeur valide entre 0 et 99.";
+    RESULTS.quantity = ''
   }
 });
 
