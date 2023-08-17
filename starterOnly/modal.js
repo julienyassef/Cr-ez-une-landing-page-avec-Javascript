@@ -53,6 +53,18 @@ const cityLocation = {
   "Portland": "Portland"
 }
 
+
+// Message error
+const message = {
+  name: 'Veuillez entrer 2 caractères ou plus pour le champ du nom',
+  email: 'Veuillez renseigner une adresse mail valide.',
+  birthdate: 'Vous devez entrer votre date de naissance',
+  quantity: 'Veuillez renseigner un nombre entre 0 et 99',
+  city: 'Veuillez sélectionner une ville',
+  cgu: `Vous devez accepter les conditions d'utilisation`
+}
+
+
 // =====================
 //     FUNCTIONS
 //   (définitions)
@@ -71,6 +83,8 @@ const closeModal = () => {
 // function isValidFirstName
 const isValidFirstName = (input) => {
   const value = input.value;
+  const errorMessage = "Veuillez entrer 2 caractères ou plus pour le prénom";
+
 
   if (value.length >= 2) {
     return true
@@ -261,6 +275,8 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   // let isValidRadio = isCheckedRadio("location");
+
+  let isValid = true;
   
   // vérifier la variable RESULTS
   for (let key in RESULTS) {
@@ -268,11 +284,23 @@ form.addEventListener("submit", (event) => {
     console.log(`${key}: ${value}`);
 
     // pas valable pour les boolean
-    if(value.length === 0) {
-      // error
+    // if(value.length === 0) {
+    //   // error
       
+    // }
+
+    if ((typeof value === 'string' && value.length === 0) || (typeof value === 'boolean' && value === false)) {
+      isValid = false;
+      console.log(`Erreur dans le champ ${key}`);
     }
 
+  }
+
+  if (isValid) {
+    console.log("Formulaire valide");
+   
+  } else {
+    console.log("Error, veuillez remplir correctement le formulaire");
   }
 
   // if (isValidRadio) {
