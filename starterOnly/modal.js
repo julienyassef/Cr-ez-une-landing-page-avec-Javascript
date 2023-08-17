@@ -24,7 +24,7 @@ const inputLast = document.querySelector("#last");
 const inputEmail = document.querySelector("#email");
 const inputBirthdate= document.querySelector("#birthdate");
 const inputQuantity= document.querySelector("#quantity");
-const inputRadio = document.querySelectorAll(".checkbox-input");
+const inputRadio = document.querySelectorAll('input[type="radio"]');
 
 
 // =====================
