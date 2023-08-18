@@ -55,7 +55,7 @@ const cityLocation = {
 
 
 // Message error
-const erreurMessage = {
+const textErrorMessage = {
   name: 'Veuillez entrer 2 caractères ou plus pour le champ du nom',
   email: 'Veuillez renseigner une adresse mail valide.',
   birthdate: 'Vous devez entrer votre date de naissance',
@@ -83,8 +83,6 @@ const closeModal = () => {
 // function isValidFirstName
 const isValidFirstName = (input) => {
   const value = input.value;
-  const errorMessage = "Veuillez entrer 2 caractères ou plus pour le prénom";
-
 
   if (value.length >= 2) {
     return true
@@ -148,16 +146,22 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 modalcrossclose.addEventListener("click", closeModal);
 
 
+// const errorMessage = document.createElement('p');
+
 // validation de l'input firstName
 inputFirst.addEventListener('input', (event) => {
   const isValid = isValidFirstName(inputFirst);
   
   if (isValid === true) {
+    // errorMessage.textContent = '';
     RESULTS.first = inputFirst.value
   } else {
+    // errorMessage.textContent = textErrorMessage.name;
     RESULTS.first = ''
+    // inputFirst.parentNode.insertBefore(errorMessage, inputFirst.nextSibling);
   }
 });
+
 
 // validation de l'input lastName
 inputLast.addEventListener('input', (event) => {
@@ -228,6 +232,7 @@ let isCGUChecked = false;
 
 // Vérifier l'état initial de la case CGU 
 RESULTS.cgu = inputCGU.checked ? "coché" : "non coché";
+isCGUChecked = RESULTS.cgu;
 
 // validation de l'input CGU
 inputCGU.addEventListener('change', (event) => {
@@ -285,7 +290,7 @@ form.addEventListener("submit", (event) => {
   
   // vérifier la variable RESULTS
   for (let key in RESULTS) {
-    const value = RESULTS[key]
+    const value = RESULTS[key];
     console.log(`${key}: ${value}`);
 
     // pas valable pour les boolean
