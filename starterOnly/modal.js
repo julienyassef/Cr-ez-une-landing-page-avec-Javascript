@@ -55,7 +55,7 @@ const cityLocation = {
 
 
 // Message error
-const message = {
+const erreurMessage = {
   name: 'Veuillez entrer 2 caractères ou plus pour le champ du nom',
   email: 'Veuillez renseigner une adresse mail valide.',
   birthdate: 'Vous devez entrer votre date de naissance',
@@ -136,6 +136,8 @@ const isChecked = (input) => {
 };
 
 
+
+
 // =====================
 //      LOGIQUE 
 // =====================
@@ -144,7 +146,6 @@ const isChecked = (input) => {
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 modalcrossclose.addEventListener("click", closeModal);
-
 
 
 // validation de l'input firstName
@@ -222,6 +223,8 @@ inputRadio.forEach(input => {
 
 
 
+// // CGU constante
+let isCGUChecked = false;
 
 // Vérifier l'état initial de la case CGU 
 RESULTS.cgu = inputCGU.checked ? "coché" : "non coché";
@@ -229,6 +232,8 @@ RESULTS.cgu = inputCGU.checked ? "coché" : "non coché";
 // validation de l'input CGU
 inputCGU.addEventListener('change', (event) => {
   RESULTS.cgu = event.target.checked ? "coché" : "non coché";
+  isCGUChecked = event.target.checked;
+  console.log(isCGUChecked)
 });
 
 
@@ -296,11 +301,16 @@ form.addEventListener("submit", (event) => {
 
   }
 
+  if (!isCGUChecked) {
+    isValid = false;
+    console.log("Erreur, veuillez accepter les conditions d'utilisation.");
+  }
+
   if (isValid) {
     console.log("Formulaire valide");
    
   } else {
-    console.log("Error, veuillez remplir correctement le formulaire");
+    console.log("Erreur, veuillez remplir correctement le formulaire");
   }
 
   // if (isValidRadio) {
