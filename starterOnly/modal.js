@@ -54,7 +54,7 @@ const cityLocation = {
 }
 
 
-// Message error
+// Text error message 
 const textErrorMessage = {
   name: 'Veuillez entrer 2 caractères ou plus pour le champ du nom',
   email: 'Veuillez renseigner une adresse mail valide.',
@@ -132,6 +132,17 @@ const isChecked = (input) => {
   return input.checked;
 
 };
+/* tentative 2 */
+// // function errorMessage
+// const displayErrorMessage = (inputElement, MessageText) => {
+//   const errorMessage = inputElement.nextElementSibling;
+//   if (errorMessage) {
+//     errorMessage.textContent = MessageText;
+//     errorMessage.classList.add('formData');
+//     errorMessage.setAttribute('data-error', MessageText);
+//     errorMessage.setAttribute('data-error-visible', 'true');
+//   }
+// };
 
 
 
@@ -145,7 +156,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 modalcrossclose.addEventListener("click", closeModal);
 
-
+  /* tentative 1 */
 // const errorMessage = document.createElement('p');
 
 // validation de l'input firstName
@@ -153,11 +164,18 @@ inputFirst.addEventListener('input', (event) => {
   const isValid = isValidFirstName(inputFirst);
   
   if (isValid === true) {
-    // errorMessage.textContent = '';
+  /* tentative 1 */
+    // errorMessage.textContent = ''; 
+      /* tentative 2 */
+    // displayErrorMessage(inputFirst, '');
     RESULTS.first = inputFirst.value
   } else {
+      /* tentative 1 */
     // errorMessage.textContent = textErrorMessage.name;
+    /* tentative 2 */
+    // displayErrorMessage(inputFirst, 'Le prénom doit comporter au moins 2 caractères');
     RESULTS.first = ''
+      /* tentative 1 */
     // inputFirst.parentNode.insertBefore(errorMessage, inputFirst.nextSibling);
   }
 });
