@@ -38,7 +38,7 @@ const RESULTS = {
   quantity: '',
   city: '',
   cgu: false,
-  newsletter: false
+  
 }
 
 // objet radio city
@@ -217,7 +217,7 @@ isCGUChecked = RESULTS.cgu;
 inputCGU.addEventListener('change', (event) => {
   RESULTS.cgu = event.target.checked 
   isCGUChecked = event.target.checked;
-  console.log(isCGUChecked)
+  // console.log(isCGUChecked)
 });
 
 
@@ -240,28 +240,28 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   const formDataFirst =document.querySelector(".formData-First")
   const formDataLast =document.querySelector(".formData-Last")
+  const formDataEmail =document.querySelector(".formData-Email")
+  const formDataBirthdate =document.querySelector(".formData-Birthdate")
+  const formDataQuantity =document.querySelector(".formData-Quantity")
+  const formDataCity =document.querySelector(".formData-City")
+  const formDataCgu =document.querySelector(".formData-Cgu")
   
   
-
-  const formDatas ={
+  const formDatas = {
     first: formDataFirst,
     last: formDataLast,
-    // email: '',
-    // birthdate: '',
-    // quantity: '',
-    // city: '',
-    // cgu: '' 
+    email: formDataEmail,
+    birthdate: formDataBirthdate,
+    quantity: formDataQuantity,
+    city: formDataCity,
+    cgu: formDataCgu
   }
   
-
 
   for (let key in formDatas) {
     formDatas[key].setAttribute("data-error-visible", false)
   }
  
-  
-
-
   let isValid = true;
   
   // vérifier la variable RESULTS
