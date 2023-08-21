@@ -284,9 +284,9 @@ form.addEventListener("submit", (event) => {
     // console.log(`${key}: ${value}`);
 
 
-    if ((typeof value === 'string' && value.length === 0) || (typeof value === 'boolean' && value === false)) {
-      isValid = false;
-      if(key!="newsletter"){
+    if(key!=="newsletter"){
+        if ((typeof value === 'string' && value.length === 0) || (typeof value === 'boolean' && value === false)) {
+          isValid = false;
         formDatas[key].setAttribute("data-error-visible", true)
         formDatas[key].setAttribute("data-error", textErrorMessage[key])
       }

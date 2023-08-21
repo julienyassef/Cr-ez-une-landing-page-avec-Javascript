@@ -185,18 +185,13 @@ main {
 .contentsecondModal {
   display: flex;
   text-align: center;
-  height: 100%;
   align-items: center;
-
+  height: 80%;
 }
 
 .second-modal-body p {
   margin-bottom: 130px;
-}
-
-.second-modal-body .btn-submit {
-  margin-top: auto; 
-  margin-bottom: 15px; 
+  
 }
 
 
