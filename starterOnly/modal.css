@@ -182,6 +182,24 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+.contentsecondModal {
+  display: flex;
+  text-align: center;
+  height: 100%;
+  align-items: center;
+
+}
+
+.second-modal-body p {
+  margin-bottom: 130px;
+}
+
+.second-modal-body .btn-submit {
+  margin-top: auto; 
+  margin-bottom: 15px; 
+}
+
+
 .content {
   margin: 5% auto;
   width: 100%;
@@ -335,6 +353,33 @@ input[data-error]::after {
 .close:after {
   transform: rotate(-45deg);
 }
+
+.second-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(0.7);
+}
+.second-close:before,
+.second-close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 3px;
+  background-color: #fff;
+}
+.second-close:before {
+  transform: rotate(45deg);
+}
+.second-close:after {
+  transform: rotate(-45deg);
+}
+
 .btn-submit,
 .btn-signup {
   background: #fe142f;
@@ -460,6 +505,7 @@ input[data-error]::after {
   margin-top: 57px;
   padding: 0;
 }
+
 .btn-signup {
   outline: none;
   text-transform: capitalize;

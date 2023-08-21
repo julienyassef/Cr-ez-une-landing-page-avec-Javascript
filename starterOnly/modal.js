@@ -14,6 +14,7 @@ const editNav = () => {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const modalcrossclose = document.querySelector(".close");
+const modalcrosssecondclose = document.querySelector(".second-close");
 const form = document.querySelector("form");
 
 
@@ -69,11 +70,11 @@ const textErrorMessage = {
 //   (définitions)
 // =====================
 
-// launch modal form
+// function launch modal form
 const launchModal = () => {
   modalbg.classList.add('display')
 };
-// close modal event
+// function close modal event
 const closeModal = () => {
   modalbg.classList.remove('display')
 };
@@ -117,10 +118,17 @@ const isChecked = (input) => {
   return input.checked;
 
 };
+
 // // function launchSecondModal
 const launchSecondModal = () => {
   const secondModal = document.querySelector('.secondModal');
   secondModal.style.display = 'block';
+};
+
+// // function close second modal
+const closeSecondModal = () => {
+  const secondModal = document.querySelector('.secondModal');
+  secondModal.style.display = 'none';
 };
 
 
@@ -133,19 +141,8 @@ const launchSecondModal = () => {
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 modalcrossclose.addEventListener("click", closeModal);
-
-
-
-
-// const secondModal = document.querySelector(".secondModal");
-// const modalBtn = document.querySelectorAll(".modal-btn");
-
-// const launchModal2 = () => {
-//   secondModal.classList.add('display')
-// };
-
-// modalBtn.forEach((btn) => btn.addEventListener("click", launchModal2));
-
+// close second modal
+modalcrosssecondclose.addEventListener("click", closeSecondModal);
 
 
 // validation de l'input firstName
