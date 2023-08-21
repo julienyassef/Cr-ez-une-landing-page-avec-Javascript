@@ -13,9 +13,7 @@ const editNav = () => {
 // =====================
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
 const modalcrossclose = document.querySelector(".close");
-
 const form = document.querySelector("form");
 
 
@@ -47,16 +45,17 @@ const RESULTS = {
 const cityLocation = {
   "New York": "New York",
   "San Francisco": "San Francisco",
-  "Seattle": "Seattle",
-  "Chicago": "Chicago",
-  "Boston": "Boston",
-  "Portland": "Portland"
+  Seattle: "Seattle",
+  Chicago: "Chicago",
+  Boston: "Boston",
+  Portland: "Portland"
 }
 
 
 // Text error message 
 const textErrorMessage = {
-  name: 'Veuillez entrer 2 caractères ou plus pour le champ du nom',
+  first: 'Veuillez entrer 2 caractères ou plus pour le champ du nom',
+  last: 'Veuillez entrer 2 caractères ou plus pour le champ du nom',
   email: 'Veuillez renseigner une adresse mail valide.',
   birthdate: 'Vous devez entrer votre date de naissance',
   quantity: 'Veuillez renseigner un nombre entre 0 et 99',
@@ -84,23 +83,14 @@ const closeModal = () => {
 const isValidFirstName = (input) => {
   const value = input.value;
 
-  if (value.length >= 2) {
-    return true
-  } else {
-    return false
-  }
+  return value.length >= 2 
 };
 
 // function isValidlastName
 const isValidLasttName = (input) => {
   const value = input.value;
 
-  if (value.length >= 2) {
-    return true
-  } 
-  else {
-    return false
-  }
+ return value.length >= 2 
 };
 
 // function isValidEmail
@@ -121,29 +111,12 @@ const isValidQuantity = (quantity) => {
   return !isNaN(parsedQuantity) && parsedQuantity >= 0 && parsedQuantity <= 99;
 };
 
-// // function isCheckedRadio
-// const isCheckedRadio = (radioGroupName) => {
-//   const radioGroup = document.querySelectorAll(`input[name="${radioGroupName}"]:checked`);
-//   return radioGroup.length > 0;
-// };
 
 // // function isChecked
 const isChecked = (input) => {
   return input.checked;
 
 };
-/* tentative 2 */
-// // function errorMessage
-// const displayErrorMessage = (inputElement, MessageText) => {
-//   const errorMessage = inputElement.nextElementSibling;
-//   if (errorMessage) {
-//     errorMessage.textContent = MessageText;
-//     errorMessage.classList.add('formData');
-//     errorMessage.setAttribute('data-error', MessageText);
-//     errorMessage.setAttribute('data-error-visible', 'true');
-//   }
-// };
-
 
 
 
@@ -156,27 +129,16 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 modalcrossclose.addEventListener("click", closeModal);
 
-  /* tentative 1 */
-// const errorMessage = document.createElement('p');
+
 
 // validation de l'input firstName
 inputFirst.addEventListener('input', (event) => {
   const isValid = isValidFirstName(inputFirst);
-  
+ 
   if (isValid === true) {
-  /* tentative 1 */
-    // errorMessage.textContent = ''; 
-      /* tentative 2 */
-    // displayErrorMessage(inputFirst, '');
     RESULTS.first = inputFirst.value
   } else {
-      /* tentative 1 */
-    // errorMessage.textContent = textErrorMessage.name;
-    /* tentative 2 */
-    // displayErrorMessage(inputFirst, 'Le prénom doit comporter au moins 2 caractères');
     RESULTS.first = ''
-      /* tentative 1 */
-    // inputFirst.parentNode.insertBefore(errorMessage, inputFirst.nextSibling);
   }
 });
 
@@ -238,60 +200,35 @@ inputRadio.forEach(input => {
       RESULTS.city = cityLocation[selectedValue]
     } 
     else {
-      RESULTS.city = "error"
+      RESULTS.city = false
     }
   });
 });
-
 
 
 // // CGU constante
 let isCGUChecked = false;
 
 // Vérifier l'état initial de la case CGU 
-RESULTS.cgu = inputCGU.checked ? "coché" : "non coché";
+RESULTS.cgu = inputCGU.checked 
 isCGUChecked = RESULTS.cgu;
 
 // validation de l'input CGU
 inputCGU.addEventListener('change', (event) => {
-  RESULTS.cgu = event.target.checked ? "coché" : "non coché";
+  RESULTS.cgu = event.target.checked 
   isCGUChecked = event.target.checked;
   console.log(isCGUChecked)
 });
 
 
 
-// validation de l'input CGU
-// inputCGU.addEventListener('input', (event) => {
-//   const isCGUChecked = isChecked(inputCGU);
-  
-//   if (isCGUChecked === true) {
-//     RESULTS.cgu = "coché";
-//   } else {
-//     RESULTS.cgu = "non coché";
-//   }
-// });
-
-
-
 // Vérifier l'état initial de la case newsletter
-RESULTS.newsletter = inputNewsLetter.checked ? "coché" : "non coché";
+RESULTS.newsletter = inputNewsLetter.checked 
 
 // validation de l'input inputNewsLetter
 inputNewsLetter.addEventListener('change', (event) => {
-  RESULTS.newsletter = event.target.checked ? "coché" : "non coché";
+  RESULTS.newsletter = event.target.checked
 });
-
-// validation de l'input NewsLetter
-// inputNewsLetter.addEventListener('input', (event) => {
-//   const isNewsLetterChecked = isChecked(inputNewsLetter);
-  
-//   if (isNewsLetterChecked === true) {
-//     RESULTS.newsletter = "coché";
-//   } else {
-//     RESULTS.newsletter = "non coché";
-//   }
-// });
 
 
 // =================================
@@ -301,46 +238,61 @@ inputNewsLetter.addEventListener('change', (event) => {
 // remplir le formulaire et validation submit click
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  const formDataFirst =document.querySelector(".formData-First")
+  const formDataLast =document.querySelector(".formData-Last")
+  
+  
 
-  // let isValidRadio = isCheckedRadio("location");
+  const formDatas ={
+    first: formDataFirst,
+    last: formDataLast,
+    // email: '',
+    // birthdate: '',
+    // quantity: '',
+    // city: '',
+    // cgu: '' 
+  }
+  
+
+
+  for (let key in formDatas) {
+    formDatas[key].setAttribute("data-error-visible", false)
+  }
+ 
+  
+
 
   let isValid = true;
   
   // vérifier la variable RESULTS
   for (let key in RESULTS) {
     const value = RESULTS[key];
-    console.log(`${key}: ${value}`);
+    // console.log(`${key}: ${value}`);
 
-    // pas valable pour les boolean
-    // if(value.length === 0) {
-    //   // error
-      
-    // }
 
     if ((typeof value === 'string' && value.length === 0) || (typeof value === 'boolean' && value === false)) {
       isValid = false;
-      console.log(`Erreur dans le champ ${key}`);
+      if(key!="newsletter"){
+        formDatas[key].setAttribute("data-error-visible", true)
+        formDatas[key].setAttribute("data-error", textErrorMessage[key])
+      }
     }
-
   }
 
   if (!isCGUChecked) {
     isValid = false;
-    console.log("Erreur, veuillez accepter les conditions d'utilisation.");
+    // console.log("Erreur, veuillez accepter les conditions d'utilisation.");
   }
 
   if (isValid) {
     console.log("Formulaire valide");
    
   } else {
-    console.log("Erreur, veuillez remplir correctement le formulaire");
+    console.error("Erreur, veuillez remplir correctement le formulaire");
   }
 
-  // if (isValidRadio) {
-  //   console.log("cocher radio est valide.");
-  // } else {
-  //   console.log("cocher radio est invalide.");
-  // }
+
+  console.table(RESULTS)
 })
 
 
