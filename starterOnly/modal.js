@@ -117,6 +117,11 @@ const isChecked = (input) => {
   return input.checked;
 
 };
+// // function launchSecondModal
+const launchSecondModal = () => {
+  const secondModal = document.querySelector('.secondModal');
+  secondModal.style.display = 'block';
+};
 
 
 
@@ -128,6 +133,18 @@ const isChecked = (input) => {
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 modalcrossclose.addEventListener("click", closeModal);
+
+
+
+
+// const secondModal = document.querySelector(".secondModal");
+// const modalBtn = document.querySelectorAll(".modal-btn");
+
+// const launchModal2 = () => {
+//   secondModal.classList.add('display')
+// };
+
+// modalBtn.forEach((btn) => btn.addEventListener("click", launchModal2));
 
 
 
@@ -286,6 +303,10 @@ form.addEventListener("submit", (event) => {
 
   if (isValid) {
     console.log("Formulaire valide");
+    // ferme le formulaire validé
+    closeModal ();
+    // ouvre la deuxième modal de message de confirmation
+    launchSecondModal();
    
   } else {
     console.error("Erreur, veuillez remplir correctement le formulaire");
@@ -294,5 +315,7 @@ form.addEventListener("submit", (event) => {
 
   console.table(RESULTS)
 })
+
+
 
 
