@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
 }
+
 /* Landing Page */
 
 body {
@@ -169,6 +170,31 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+.secondModal{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+
+.contentsecondModal {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  height: 80%;
+}
+
+.second-modal-body p {
+  margin-bottom: 130px;
+  
+}
+
+
 .content {
   margin: 5% auto;
   width: 100%;
@@ -226,12 +252,13 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
+
 input[data-error]::after {
     content: attr(data-error);
     font-size: 0.4em;
     color: red;
-} */
+}
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -321,6 +348,33 @@ input[data-error]::after {
 .close:after {
   transform: rotate(-45deg);
 }
+
+.second-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(0.7);
+}
+.second-close:before,
+.second-close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 3px;
+  background-color: #fff;
+}
+.second-close:before {
+  transform: rotate(45deg);
+}
+.second-close:after {
+  transform: rotate(-45deg);
+}
+
 .btn-submit,
 .btn-signup {
   background: #fe142f;
@@ -446,6 +500,7 @@ input[data-error]::after {
   margin-top: 57px;
   padding: 0;
 }
+
 .btn-signup {
   outline: none;
   text-transform: capitalize;
@@ -527,3 +582,13 @@ footer {
   }
 }
 
+
+
+
+/* global */
+.hidden {
+  display: none;
+}
+.display {
+  display: block;
+}
