@@ -293,11 +293,6 @@ form.addEventListener("submit", (event) => {
     }
   }
 
-  if (!isCGUChecked) {
-    isValid = false;
-    // console.log("Erreur, veuillez accepter les conditions d'utilisation.");
-  }
-
   if (isValid) {
     console.log("Formulaire valide");
     // ferme le formulaire validé
