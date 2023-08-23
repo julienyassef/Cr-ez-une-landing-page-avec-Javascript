@@ -15,6 +15,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const modalcrossclose = document.querySelector(".close");
 const modalcrosssecondclose = document.querySelector(".second-close");
+const modalCloseBtn = document.querySelector(".btn-close");
 const form = document.querySelector("form");
 
 
@@ -132,7 +133,6 @@ const closeSecondModal = () => {
 };
 
 
-
 // =====================
 //      LOGIQUE 
 // =====================
@@ -143,6 +143,10 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 modalcrossclose.addEventListener("click", closeModal);
 // close second modal
 modalcrosssecondclose.addEventListener("click", closeSecondModal);
+// Close second modal btn fermer
+modalCloseBtn.addEventListener("click", closeSecondModal);
+
+
 
 
 // validation de l'input firstName
@@ -296,7 +300,7 @@ form.addEventListener("submit", (event) => {
   if (isValid) {
     console.log("Formulaire valide");
     // ferme le formulaire validé
-    closeModal ();
+    closeModal();
     // ouvre la deuxième modal de message de confirmation
     launchSecondModal();
    
