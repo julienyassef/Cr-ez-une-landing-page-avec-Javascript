@@ -174,8 +174,6 @@ inputLast.addEventListener('input', (event) => {
 
 // validation de l'input Birthdate
 inputBirthdate.addEventListener('change', (event) => {
-  console.log('Change event triggered');
-  console.log('Input value:', event.target.value);
   const isValid = isValidBirthdate(inputBirthdate.value);
   
   if (isValid === true) {
