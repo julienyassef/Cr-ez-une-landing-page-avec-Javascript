@@ -84,15 +84,19 @@ const closeModal = () => {
 // function isValidFirstName
 const isValidFirstName = (input) => {
   const value = input.value;
+  const FirstNameRegex = /^[A-Za-z\s]+$/;
 
-  return value.length >= 2 
+  return value.length >= 2 && FirstNameRegex.test(value); 
 };
+
+
 
 // function isValidlastName
 const isValidLasttName = (input) => {
   const value = input.value;
+  const LastNameRegex = /^[A-Za-z\s]+$/;
 
- return value.length >= 2 
+ return value.length >= 2 && LastNameRegex.test(value); 
 };
 
 // function isValidEmail
@@ -133,6 +137,8 @@ const closeSecondModal = () => {
 };
 
 
+
+
 // =====================
 //      LOGIQUE 
 // =====================
@@ -154,7 +160,7 @@ inputFirst.addEventListener('input', (event) => {
   const isValid = isValidFirstName(inputFirst);
  
   if (isValid === true) {
-    RESULTS.first = inputFirst.value
+    RESULTS.first = inputFirst.value;
   } else {
     RESULTS.first = ''
   }
@@ -164,11 +170,12 @@ inputFirst.addEventListener('input', (event) => {
 // validation de l'input lastName
 inputLast.addEventListener('input', (event) => {
   const isValid = isValidLasttName(inputLast);
+ 
   
   if (isValid === true) {
     RESULTS.last = inputLast.value
   } else {
-    RESULTS.last = ''
+    RESULTS.last = '' 
   }
 });
 
@@ -197,7 +204,6 @@ inputEmail.addEventListener('input', (event) => {
 // validation de l'input Quantity
 inputQuantity.addEventListener('input', (event) => {
   const isValid = isValidQuantity(inputQuantity.value);
-  console.log('isValid', isValid)
   
   if (isValid === true) {
     RESULTS.quantity = inputQuantity.value
